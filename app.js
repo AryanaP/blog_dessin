@@ -5,28 +5,38 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var app = express();
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
-/* On utilise les sessions */
-// app.use(session({secret: 'todotopsecret'}))
 
-
-/* S'il n'y a pas de todolist dans la session,
-on en crée une vide sous forme d'array avant la suite */
-
-// .use(function(req, res, next){
-//     if (typeof(req.session.todolist) == 'undefined') {
-//       req.session.todolist = [];
-//     }
-//     next();
-// })
-
+// render will automatically look in the views folder
 
 
 // accueil
 app.get('/', function (req, res) {
-  res.render('home.ejs');
+  res.render('pages/home.ejs');
 });
 
+// about page
+app.get('/about', function(req, res) {
+    res.render('pages/about');
+});
+
+
+// album
+app.get('/album', function (req, res) {
+  var drinks = [
+        { name: 'Bloody Mary', drunkness: 3 },
+        { name: 'Martini', drunkness: 5 },
+        { name: 'Scotch', drunkness: 10 }
+    ];
+    var tagline = "Any code blablablablabla bla";
+
+    res.render('pages/album.ejs', {
+        drinks: drinks,
+        tagline: tagline
+    });
+});
 
 
 /* On affiche la todolist et le formulaire */
