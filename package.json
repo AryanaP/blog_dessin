@@ -1,0 +1,13 @@
+{
+  "name": "mon-blog-dessin",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "~4.14.1",
+    "ejs": "~2.1.4",
+    "cookie-session": "~1.2.0",
+    "body-parser": "~1.13.3"
+  },
+
+  "author": "Aryana <aryana.ravari@gmail.com>",
+  "description": "Mon premier blog dessin en javascript- nodeJS"
+}
