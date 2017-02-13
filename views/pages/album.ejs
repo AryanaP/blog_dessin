@@ -27,6 +27,7 @@
             <% albumlist.forEach(function(photo, index) { %>
                 <li><a href="/album/supprimer/<%= index %>">✘</a> <%= photo %></li>
             <% }); %>
+
             </ul>
 
             <form action="/album/ajouter/" method="post">
@@ -35,6 +36,7 @@
                   <label for="newalbumphoto">quelle photo ?</label>
                   <input type="text" name="newalbumphoto" id="newalbumphoto" autofocus />
                   <input type="submit" />
+
                 </p>
             </form>
 
