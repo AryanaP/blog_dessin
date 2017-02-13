@@ -21,6 +21,17 @@
           <div class="jumbotron">
               <h1>Blog Dessin</h1>
               <p>Welcome to my blog</p>
+
+            <% if (albumlist == []) { %>
+              <p> no pictures yet! </p>
+            <% } else { %>
+              <ul>
+                <% for (var i=albumlist.length; i>0; i--) { %>
+                  <p> Titre et album de la photo </p>
+                  <li> <%= albumlist[i-1] %></li>
+                <% } %>
+              </ul>
+            <% } %>
           </div>
         </div>
     </main>

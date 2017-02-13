@@ -21,15 +21,22 @@
       <div class="col-sm-8">
         <div class="jumbotron">
             <h1> Album </h1>
-            <h2>Variable</h2>
-            <p><%= tagline %></p>
 
-            <h2>Loop</h2>
+            <h1>Ma todolist album</h1>
             <ul>
-              <% drinks.forEach(function(drink) { %>
-                <li><%= drink.name %> - <%= drink.drunkness %></li>
-              <% }); %>
+            <% albumlist.forEach(function(photo, index) { %>
+                <li><a href="/album/supprimer/<%= index %>">✘</a> <%= photo %></li>
+            <% }); %>
             </ul>
+
+            <form action="/album/ajouter/" method="post">
+                <p>
+                  <!-- remplacer le texte par des images -->
+                  <label for="newalbumphoto">quelle photo ?</label>
+                  <input type="text" name="newalbumphoto" id="newalbumphoto" autofocus />
+                  <input type="submit" />
+                </p>
+            </form>
 
         </div>
       </div>
