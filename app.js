@@ -3,35 +3,33 @@ var app = express();
 var session = require('cookie-session'); // Charge le middleware de sessions
 var bodyParser = require('body-parser'); // Charge le middleware de gestion des paramètres
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
-var path = require('path');
-var formidable = require('formidable'); // parse the incoming form data (the uploaded files)
-var fs = require('fs'); // used to rename uploaded files
-
-
+var formidable = require('formidable'); // to parse incoming form data (uploaded files)
+var fs = require('fs'); // to rename uploaded files
 
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 // middleware to serve up the static files in our public/ directory
+var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, 'views/home.html'));
-});
+
+
+// create a route which will serve up the homepage (index.html) when someone visits the website:--> je ne comprends pas ce passage
+// app.get('/', function(req, res){
+//   res.sendFile(path.join(__dirname, 'views/pages/home.ejs'));
+// });
 
 
 
 // Create the upload/ route to handle the incoming uploads via the POST method:
-
 app.post('/upload', function(req, res){
   // create an incoming form object
   var form = new formidable.IncomingForm();
-  // specify that we want to allow the user to upload multiple files in a single request
+  // sallow user to upload multiple files in a single request
   form.multiples = true;
   // store all uploads in the /uploads directory
   form.uploadDir = path.join(__dirname, '/uploads');
-  // every time a file has been uploaded successfully,
-  // rename it to it's orignal name
+  // each file uploaded successfully is renamed to orignal name
   form.on('file', function(field, file) {
     fs.rename(file.path, path.join(form.uploadDir, file.name));
   });
@@ -39,7 +37,7 @@ app.post('/upload', function(req, res){
   form.on('error', function(err) {
     console.log('An error has occured: \n' + err);
   });
-  // once all the files have been uploaded, send a response to the client
+  // once all uploaded, send a response to client
   form.on('end', function() {
     res.end('success');
   });
@@ -61,7 +59,6 @@ app.use(function(req, res, next){
   }
   next();
 })
-
 
 
 // HOME PAGE
@@ -93,7 +90,6 @@ app.get('/album/supprimer/:id', function(req, res) {
   }
   res.redirect('/album');
 })
-
 
 
 /* On redirige vers la todolist si la page demandée n'est pas trouvée */

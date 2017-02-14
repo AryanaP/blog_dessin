@@ -1,0 +1,16 @@
+#side-link li {
+  text-align: left;
+  text-decoration: none;
+  list-style-type:none;
+}
+
+#side-link li a {
+  color: black;
+}
+
+#side-link li a:hover {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
