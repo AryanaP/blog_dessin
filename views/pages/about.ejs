@@ -1,6 +1,7 @@
 <html lang="en">
 <head>
     <% include ../partials/head %>
+<!--     <link href="css/styles.css" rel="stylesheet"> -->
 </head>
 <body class="container">
 
@@ -23,10 +24,28 @@
           <h1>This is great</h1>
           <p>Welcome to templating using EJS</p>
         </div>
+        <!-- Image uploader -->
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+            <h2>File Uploader</h2>
+            <h4>coligo.io</h4>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+            <button class="btn btn-lg upload-btn" type="button">Upload File</button>
+            <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+          </div>
+        </div>
+        <!-- end image upload -->
       </div>
 
-
     </div>
+
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="javascripts/upload.js"></script>
+
   </main>
 
   <footer>
@@ -35,3 +54,6 @@
 
 </body>
 </html>
+
+
+
