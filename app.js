@@ -47,6 +47,14 @@ app.post('/upload', function(req, res){
 
 
 
+// NPM Node Gallery
+app.use('/gallery', require('node-gallery')({
+  staticFiles : 'uploads',
+  urlRoot : 'gallery',
+  title : 'Example Gallery'
+}));
+
+
 // A SAVOIR render will automatically look in the views folder
 // MES PAGES - fait model + controlleur. Posibilité de les séparer. A faire plus tard.
 
