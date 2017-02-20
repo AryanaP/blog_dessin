@@ -2,7 +2,9 @@ var express = require('express');
 var app = express();
 var session = require('cookie-session'); // Charge le middleware de sessions
 var bodyParser = require('body-parser'); // Charge le middleware de gestion des paramètres
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
+  app.use(bodyParser.json()); // support json encoded bodies
+  app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var formidable = require('formidable'); // to parse incoming form data (uploaded files)
 var fs = require('fs'); // to rename uploaded files
 
@@ -14,21 +16,31 @@ var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 // create a route which will serve up the homepage (index.html) when someone visits the website:--> je ne comprends pas ce passage
-// app.get('/', function(req, res){
-//   res.sendFile(path.join(__dirname, 'views/pages/home.ejs'));
-// });
+app.get('/', function(req, res){
+  res.sendFile(path.join(__dirname, 'views/pages/album.ejs'));
+});
 
 
-
-// Create the upload/ route to handle the incoming uploads via the POST method:
+// Create the upload/ route to handle the incoming uploads via the POST method: -
 app.post('/upload', function(req, res){
   // create an incoming form object
   var form = new formidable.IncomingForm();
-  // sallow user to upload multiple files in a single request
+  // var file_route = "/uploads"
+  // allows user to upload multiple files in a single request
   form.multiples = true;
   // store all uploads in the /uploads directory
-  form.uploadDir = path.join(__dirname, '/uploads');
+  // if () {
+  //   var file_route = "/uploads/Au Quotidien"
+  // } else if() {
+  //   var file_route = "/uploads/La League"
+  // }
+
+  var file_name = '/uploads';
+  // console.log('/uploads/' + req.body.album_name);
+
+  form.uploadDir = path.join(__dirname, file_name)
   // each file uploaded successfully is renamed to orignal name
   form.on('file', function(field, file) {
     fs.rename(file.path, path.join(form.uploadDir, file.name));
@@ -44,6 +56,10 @@ app.post('/upload', function(req, res){
   // parse the incoming request containing the form data
   form.parse(req);
 });
+
+
+
+
 
 
 

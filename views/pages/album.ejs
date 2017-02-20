@@ -20,39 +20,16 @@
 
       <div class="col-sm-8">
         <div class="jumbotron">
-            <h1> Album </h1>
-
-            <h1>Ma todolist album</h1>
-            <ul>
-            <% albumlist.forEach(function(photo, index) { %>
-                <li><a href="/album/supprimer/<%= index %>">✘</a> <%= photo %></li>
-            <% }); %>
-
-            </ul>
-
-            <form action="/album/ajouter/" method="post">
-                <p>
-                  <!-- remplacer le texte par des images -->
-                  <label for="newalbumphoto">quelle photo ?</label>
-                  <input type="text" name="newalbumphoto" id="newalbumphoto" autofocus />
-                  <input type="submit" />
-
-                </p>
-            </form>
-
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-offset-4 col-sm-8">
-        <div class="jumbotron">
           <p>Upload Pictures</p>
         </div>
         <!-- Image uploader -->
         <div class="panel panel-default">
+
+          <form role="form" id="createAccountForm" action="/upload" method="post">
+            <input id="album_quotidien" type="radio" name="album_name" value="quotidien"  checked="checked"> Au Quotidien <br>
+            <input id="album_league" type="radio" name="album_name" value="league"> La League<br>
+          </form>
+
           <div class="panel-body">
             <span class="glyphicon glyphicon-cloud-upload"></span>
             <h2>File Uploader</h2>
@@ -61,11 +38,13 @@
               <div class="progress-bar" role="progressbar"></div>
             </div>
             <button class="btn btn-lg upload-btn" type="button">Upload File</button>
-            <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
           </div>
-        </div>
-        <!-- end image upload -->
       </div>
+
+    </div>
+            <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+
+
 
     </div>
 
