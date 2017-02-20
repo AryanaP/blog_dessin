@@ -16,6 +16,9 @@ $(document).ready(function(){
       // AJAX request
       var formData = new FormData();
 
+      // ajouté pour home page
+      var formHome = new FormData()
+
       // loop through all the selected files
       for (var i = 0; i < files.length; i++) {
         var file = files[i];
@@ -69,18 +72,22 @@ $(document).ready(function(){
   });
 
 
-  var dir = "../../uploads";
+
+  var folder = "../../uploads";
   $.ajax({
-      //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-      url: dir,
-      success: function (data) {
-          //List all .png file names in the page
-          $(data).find("a:contains(.png),a:contains(.jpg)").each(function(){
-              var filename = this.href.replace(window.location, "").replace("http://", "");
-              $("#last-uploads").append("<img src='" + dir + filename + "'>");
-          });
-      }
+    url : folder,
+    success: function (data) {
+      $(data).find("a").attr("href", function (i, val) {
+        if ( val.match(/\.jpg|\.png|\.gif/$) ) {
+          $("#last-uploads").append( "<img src='"+ folder + val +"'>" );
+        }
+      });
+    }
   });
 
-});
 
+  $('<img />')
+      .attr('src', 'home/code/AryanaP/blog_dessin/uploads')
+      .appendTo('#last-uploads')
+
+});

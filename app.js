@@ -102,7 +102,7 @@ app.get('/album/supprimer/:id', function(req, res) {
 
 /* On redirige vers la todolist si la page demandée n'est pas trouvée */
 app.use(function(req, res, next){
-    res.redirect('/home');
+    res.redirect('/');
 })
 
 .listen(8080);
