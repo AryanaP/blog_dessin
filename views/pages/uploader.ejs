@@ -25,10 +25,13 @@
         <!-- Image uploader -->
         <div class="panel panel-default">
 
-          <form role="form" id="createAccountForm" action="/upload" method="post">
-            <input id="album_quotidien" type="radio" name="album_name" value="quotidien"  checked="checked"> Au Quotidien <br>
-            <input id="album_league" type="radio" name="album_name" value="league"> La League<br>
+          <form role="form" id="postalbum" action="/upload_pic" method="post">
+            <input id="album_quotidien" type="radio" name="album_name" value="Au Quotidien"  checked="checked"> Au Quotidien <br>
+            <input id="album_league" type="radio" name="album_name" value="La League"> La League <br>
+            <button id="submit_pic" type="button">submit album</button>
           </form>
+
+          <h2 id="selected-album"> </h2>
 
           <div class="panel-body">
             <span class="glyphicon glyphicon-cloud-upload"></span>
@@ -40,9 +43,8 @@
             <button class="btn btn-lg upload-btn" type="button">Upload File</button>
           </div>
       </div>
-
     </div>
-            <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+    <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
 
 
 

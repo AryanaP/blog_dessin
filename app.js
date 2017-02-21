@@ -16,30 +16,19 @@ var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-// create a route which will serve up the homepage (index.html) when someone visits the website:--> je ne comprends pas ce passage
-app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, 'views/pages/album.ejs'));
+app.post('/upload_pic', function(req, res){
+  var chosenAlbum = req.body.album_name;
+  console.log(chosenAlbum);
 });
-
 
 // Create the upload/ route to handle the incoming uploads via the POST method: -
 app.post('/upload', function(req, res){
   // create an incoming form object
   var form = new formidable.IncomingForm();
-  // var file_route = "/uploads"
   // allows user to upload multiple files in a single request
   form.multiples = true;
   // store all uploads in the /uploads directory
-  // if () {
-  //   var file_route = "/uploads/Au Quotidien"
-  // } else if() {
-  //   var file_route = "/uploads/La League"
-  // }
-
-  var file_name = '/uploads';
-  // console.log('/uploads/' + req.body.album_name);
-
+  var file_name = '/uploads/';
   form.uploadDir = path.join(__dirname, file_name)
   // each file uploaded successfully is renamed to orignal name
   form.on('file', function(field, file) {
@@ -56,10 +45,6 @@ app.post('/upload', function(req, res){
   // parse the incoming request containing the form data
   form.parse(req);
 });
-
-
-
-
 
 
 
@@ -95,30 +80,22 @@ app.get('/about', function(req, res) {
     res.render('pages/about');
 });
 
-// ALBUM PAGE
-/* Afficher l'album et les photos */
-app.get('/album', function (req, res) {
-  res.render('pages/album.ejs', {albumlist: req.session.albumlist});
+// UPLOAD PAGE
+/* Afficher les uploads et les photos */
+app.get('/uploader', function (req, res) {
+  res.render('pages/uploader.ejs');
 })
-// Ajouter "photos" - pour le moment du texte
-app.post('/album/ajouter/', urlencodedParser, function(req, res) {
-  if (req.body.newalbumphoto != '') {
-    req.session.albumlist.push(req.body.newalbumphoto);
-  }
-  res.redirect('/album');
-})
-// supprimer photo (pour le moment du texte)
-app.get('/album/supprimer/:id', function(req, res) {
-  if (req.params.id != '') {
-    req.session.albumlist.splice(req.params.id, 1);
-  }
-  res.redirect('/album');
+
+app.get('/uploader/:chosenAlbum', function (req, res) {
+  res.render('pages/uploader.ejs', {album: req.params.chosenAlbum});
 })
 
 
-/* On redirige vers la todolist si la page demandée n'est pas trouvée */
+/* On redirige vers l'accueil si la page demandée n'est pas trouvée */
 app.use(function(req, res, next){
     res.redirect('/');
 })
 
 .listen(8080);
+
+
