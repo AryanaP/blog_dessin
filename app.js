@@ -28,7 +28,7 @@ app.post('/upload', function(req, res){
   // allows user to upload multiple files in a single request
   form.multiples = true;
   // store all uploads in the /uploads directory
-  var file_name = '/uploads/';
+  var file_name = '/uploads/Au Quotidien';
   form.uploadDir = path.join(__dirname, file_name)
   // each file uploaded successfully is renamed to orignal name
   form.on('file', function(field, file) {
@@ -52,7 +52,7 @@ app.post('/upload', function(req, res){
 app.use('/gallery', require('node-gallery')({
   staticFiles : 'uploads',
   urlRoot : 'gallery',
-  title : 'Example Gallery'
+  title : "Aarya's Gallery"
 }));
 
 
