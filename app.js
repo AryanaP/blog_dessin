@@ -75,11 +75,6 @@ app.get('/', function (req, res) {
   res.render('pages/home.ejs', {albumlist: req.session.albumlist});
 });
 
-// ABOUT PAGE
-app.get('/about', function(req, res) {
-    res.render('pages/about');
-});
-
 // UPLOAD PAGE
 /* Afficher les uploads et les photos */
 app.get('/uploader', function (req, res) {
