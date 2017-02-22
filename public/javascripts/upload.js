@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+  $('#submit_pic').on('click', function (){
+    var radioValue = $('input:radio[name=album_name]:checked').val();
+    $("#selected-album").append(radioValue);
+    $('#postalbum').hide();
+  });
+
+
   $('.upload-btn').on('click', function (){
     $('#upload-input').click();
     $('.progress-bar').text('0%');
@@ -16,17 +23,13 @@ $(document).ready(function(){
       // AJAX request
       var formData = new FormData();
 
-      // ajouté pour home page
-      var formHome = new FormData()
-
       // loop through all the selected files
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-
-        // add the files to formData object for the data payload
-        formData.append('uploads[]', file, file.name);
-      }
-
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          // add the files to formData object for the data payload
+          // for some reason uploads[] is the "name" of the file input
+         formData.append('uploads[]', file, file.name);
+        }
 
       $.ajax({
         url: '/upload',
@@ -73,21 +76,6 @@ $(document).ready(function(){
 
 
 
-  var folder = "../../uploads";
-  $.ajax({
-    url : folder,
-    success: function (data) {
-      $(data).find("a").attr("href", function (i, val) {
-        if ( val.match(/\.jpg|\.png|\.gif/$) ) {
-          $("#last-uploads").append( "<img src='"+ folder + val +"'>" );
-        }
-      });
-    }
-  });
 
-
-  $('<img />')
-      .attr('src', 'home/code/AryanaP/blog_dessin/uploads')
-      .appendTo('#last-uploads')
 
 });

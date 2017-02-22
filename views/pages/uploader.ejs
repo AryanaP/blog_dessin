@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body class="container">
+  <header>
+    <% include ../partials/topbar %>
+  </header>
+
+  <main>
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="well">
+          <% include ../partials/sidebar %>
+        </div>
+      </div>
+
+      <div class="col-sm-8">
+        <div class="jumbotron">
+          <p>Upload Pictures</p>
+        </div>
+        <!-- Image uploader -->
+        <div class="panel panel-default">
+
+          <form role="form" id="postalbum" action="/upload_pic" method="post">
+            <input id="album_quotidien" type="radio" name="album_name" value="Au Quotidien"  checked="checked"> Au Quotidien <br>
+            <input id="album_league" type="radio" name="album_name" value="La League"> La League <br>
+            <button id="submit_pic" type="button">submit album</button>
+          </form>
+
+          <h2 id="selected-album"> </h2>
+
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+            <h2>File Uploader</h2>
+            <h4>coligo.io</h4>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+            <button class="btn btn-lg upload-btn" type="button">Upload File</button>
+          </div>
+      </div>
+    </div>
+    <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+
+
+
+    </div>
+
+    <% include ../partials/scripts %>
+
+
+  </main>
+
+  <footer>
+      <% include ../partials/footer %>
+  </footer>
+
+</body>
+</html>
